@@ -1,0 +1,44 @@
+import sys 
+import os
+import math 
+
+def esValido(s):
+    
+    cadena = {}
+    for char in s:
+        if char in cadena:
+            cadena[char] += 1
+        else:
+            cadena[char] = 1
+    
+    min_conta = cadena[char]
+    max_conta = cadena[char]
+    
+    cont_cadena = {}
+    for char, valor in cadena.items():
+        if valor in cont_cadena:
+            cont_cadena[valor] += 1
+        else:
+            cont_cadena[valor] = 1
+        
+        if valor < min_conta:
+            min_conta = valor
+        if valor > max_conta:
+            max_conta = valor
+    
+    if len(cont_cadena) == 1:
+        return 'YES'
+    elif len(cont_cadena) == 2:
+        if cont_cadena[max_conta] == 1 and max_conta - min_conta == 1:
+            return 'YES'
+        elif cont_cadena[min_conta] == 1 and min_conta == 1:
+            return 'YES'
+    return 'NO'
+
+if __name__ == '__main__':
+    
+    s = input()
+
+    result = esValido(s)
+
+    print(result + '\n')
